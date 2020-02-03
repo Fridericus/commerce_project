@@ -105,8 +105,7 @@ export default {
     onSelectedFile(event) {
       this.selectedFile = event.target.files[0];
       this.fileName = event.target.files[0].name;
-    },
-    onAddProduct
+    }
   }
 }
 </script>
