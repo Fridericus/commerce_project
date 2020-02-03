@@ -29,7 +29,7 @@ router.get("/owners", async (req, res) => {
     let owners = await Owner.find();
     res.json({
       success: true,
-      message: owners
+      owners: owners
     })
   }catch(err){
     res.status(500).json({
