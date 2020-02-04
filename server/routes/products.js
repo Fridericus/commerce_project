@@ -7,6 +7,8 @@ router.post('/products', upload.single("photo"), async(req, res) => {
   console.log(req.body);
   try{
     let product = new Product();
+    product.owner = req.body.ownerID;
+    product.category = req.body.categoryID;
     product.title = req.body.title;
     product.description = req.body.description;
     product.photo = req.file.location;
@@ -62,6 +64,7 @@ router.get("/products/:id", async (req, res) =>{
 
 // PUT a single product
 router.put("/products/:id", upload.single("photo"), async (req, res) =>{
+  console.log(req);
   try{
     let product = await Product.findOneAndUpdate(
       { _id: req.params.id },
