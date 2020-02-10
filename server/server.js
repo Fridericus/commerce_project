@@ -30,9 +30,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 const productRoutes = require("./routes/products");
 const categoryRoutes = require("./routes/categorys");
 const ownerRoutes = require("./routes/owners");
+const authRoutes = require("./routes/auth");
 app.use("/api", productRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", ownerRoutes);
+app.use("/api", authRoutes);
 
 console.log(process.env);
 
