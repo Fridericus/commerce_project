@@ -48,6 +48,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/auth',
   ],
   /*
   ** Axios module configuration
@@ -55,8 +56,14 @@ export default {
   */
   axios: {
     proxy: true,
-    baseURL: URL
+    baseURL: URL,
+    prefix: URL
   },
+
+  proxy: {
+    "/api": URL
+  },
+
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
@@ -86,6 +93,19 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+    }
+  },
+
+  auth: {
+    stratergies: {
+      local: {
+        endpoints: {
+          login: {
+            propertyName: "token"
+          },
+          logout: true
+        }
+      }
     }
   }
 }

@@ -35,22 +35,29 @@
     <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
     <v-toolbar-title class="pr-10" v-text="title" />
 
-    <!-- <v-text-field
-      hide-details
-      label="Search"
-      single-line
-      rounded
-      outlined
-      dense
-      clearable
-      color=""
-      filled
-      class="px-6"
-    ></v-text-field> -->
-
     <Search/>
     <v-spacer/>
 
+    <template v-if="$auth.$state.loggedIn">
+      <nuxt-link
+        to="/profile"
+        class="white--text"
+      >
+        <span class="">Hello,</span>
+        <span class="">{{ $auth.$state.user.name }}</span>
+
+      </nuxt-link>
+    </template>
+    <template v-else>
+      <nuxt-link
+        to="/logIn"
+        class="white--text"
+      >
+        <span class="">Hello,</span>
+        <span class="">Sign In</span>
+
+      </nuxt-link>
+    </template>
     <v-btn icon>
       <v-icon>location_on</v-icon>
     </v-btn>
