@@ -33,8 +33,17 @@
     extensionHeight="35px"
   >
     <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-    <v-toolbar-title class="pr-10" v-text="title" />
-
+    <v-btn
+      icon
+      :nuxt="true"
+      :to="`/`"
+    >
+          <v-icon>mdi-home</v-icon>
+    </v-btn>
+    <v-toolbar-title 
+      class="pr-10" 
+      v-text="title" 
+    />
     <Search/>
     <v-spacer/>
 
@@ -64,9 +73,14 @@
     <v-btn icon>
     <v-icon>language</v-icon>
     </v-btn>
-    <v-btn icon>
+    <v-btn 
+      icon
+      :nuxt="true"
+      :to="`/cart/`"
+    >
     <v-icon>shopping_cart</v-icon>
     </v-btn>
+    <span>{{getCartLength}}</span>
 
     <template 
       v-slot:extension
@@ -87,6 +101,7 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
 import Search from '~/components/Search';
 export default {
   components: {
@@ -96,13 +111,16 @@ export default {
     title: "Super Store",
     drawer: null
   }),
+  computed: {
+    ...mapGetters(["getCartLength"])
+  }
 }
 </script>
 
 <style scoped>
 
 .extension-style{
-  background-color:  red;  
+  background-color:  red;
 }
 
 </style>

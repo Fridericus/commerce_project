@@ -35,8 +35,6 @@
                 tile
                 width="100%"
                 class="d-flex"
-                nuxt=true
-                :to="`/products/${product._id}`"
               > 
 
                 <v-img
@@ -46,6 +44,7 @@
                 ></v-img>
                 <v-container>
                   <v-row>
+                    
                     <v-col class="px-12 listing-style">
                       <p class="blue--text title font-weight-medium my-0">{{product.title}}</p>
                       <p class="grey--text caption">by {{product.owner.name}}</p>
@@ -89,9 +88,13 @@ export default {
       }
 
     }catch(err){
+
       console.log(err);
+
     }
+
   }
+
 }
 </script>
 

@@ -58,7 +58,7 @@
       >
         <v-card-actions class="pt-3">
             <v-btn outlined text>Buy Now</v-btn>
-            <v-btn outlined text>Add to Cart</v-btn>
+            <v-btn @click="addProductToCart(product)" outlined text>Add to Cart</v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
@@ -70,7 +70,8 @@
 </template>
 
 <script>
-import ReviewSection from "~/components/ReviewSection"
+import ReviewSection from "~/components/ReviewSection";
+import {mapActions} from "vuex";
 export default {
   components: {
     ReviewSection
@@ -120,7 +121,9 @@ export default {
       .catch(e => {
         //this.errors.push(e)
       })
-    }
+    },
+    // Maps the vuex store actions to methods
+    ...mapActions(["addProductToCart"])
   }
 }
 </script>
