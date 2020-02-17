@@ -8,7 +8,11 @@ const _6f267bc1 = () => interopDefault(import('../pages/cart.vue' /* webpackChun
 const _63bf35a0 = () => interopDefault(import('../pages/FeaturedProduct.vue' /* webpackChunkName: "pages/FeaturedProduct" */))
 const _9b14bc6e = () => interopDefault(import('../pages/inspire.vue' /* webpackChunkName: "pages/inspire" */))
 const _62fcd690 = () => interopDefault(import('../pages/logIn.vue' /* webpackChunkName: "pages/logIn" */))
+const _37649ac6 = () => interopDefault(import('../pages/orders.vue' /* webpackChunkName: "pages/orders" */))
+const _754c2a16 = () => interopDefault(import('../pages/payment.vue' /* webpackChunkName: "pages/payment" */))
+const _0fbe5630 = () => interopDefault(import('../pages/placeOrder.vue' /* webpackChunkName: "pages/placeOrder" */))
 const _2bc1b918 = () => interopDefault(import('../pages/profile.vue' /* webpackChunkName: "pages/profile" */))
+const _422af7ee = () => interopDefault(import('../pages/search.vue' /* webpackChunkName: "pages/search" */))
 const _979178ce = () => interopDefault(import('../pages/signUp.vue' /* webpackChunkName: "pages/signUp" */))
 const _7c778d75 = () => interopDefault(import('../pages/address/add.vue' /* webpackChunkName: "pages/address/add" */))
 const _1b33520e = () => interopDefault(import('../pages/address/_id.vue' /* webpackChunkName: "pages/address/_id" */))
@@ -53,9 +57,25 @@ export const routerOptions = {
     component: _62fcd690,
     name: "logIn"
   }, {
+    path: "/orders",
+    component: _37649ac6,
+    name: "orders"
+  }, {
+    path: "/payment",
+    component: _754c2a16,
+    name: "payment"
+  }, {
+    path: "/placeOrder",
+    component: _0fbe5630,
+    name: "placeOrder"
+  }, {
     path: "/profile",
     component: _2bc1b918,
     name: "profile"
+  }, {
+    path: "/search",
+    component: _422af7ee,
+    name: "search"
   }, {
     path: "/signUp",
     component: _979178ce,

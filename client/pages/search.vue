@@ -1,6 +1,6 @@
 <template>
 <v-container>
-<v-row class="red lighten-4">
+<!-- <v-row class="red lighten-4">
   <v-col class="grey lighten-4 mx-12">
     <v-row class="red lighten-4">
       <v-col 
@@ -15,13 +15,13 @@
           <FeaturedProduct/>
         </v-card>
       </v-col>
-    </v-row>
+    </v-row> -->
 
     <v-row class="red lighten-4">
       <v-col align=center class="green lighten-4">
         <v-card 
           flat 
-          width="1000"
+          width="600"
           align=center
           class="blue lighten-2 featured-style"
         >
@@ -35,8 +35,8 @@
                 tile
                 width="100%"
                 class="d-flex"
-                :nuxt=true
-                :to="`/products/${product._id}`"
+                :nuxt="true"
+                :to="`/products/${product.objectID}`"  
               > 
 
                 <v-img
@@ -69,8 +69,6 @@
       </v-col>
     </v-row>
 
-  </v-col>
-</v-row>
 </v-container>
 </template>
 
@@ -80,10 +78,13 @@ export default {
   components: {
     FeaturedProduct
   },
-  async asyncData({$axios}){
-    try {
-      let responce = await $axios.$get('/api/products');
+  watchQuery: ["title"],
+  async asyncData({$axios, query}){
+    try{
+      let responce = await $axios.$post('/api/search', {title: query.title });
+
       console.log(responce);
+
       return {
         products: responce.products
       }
@@ -92,6 +93,7 @@ export default {
       console.log(err);
     }
   }
+
 }
 </script>
 

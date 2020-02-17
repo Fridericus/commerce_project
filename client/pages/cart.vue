@@ -49,6 +49,9 @@
                     </v-card-actions>
 
                   </v-col>
+                  <v-col>
+                    <p class="black--text title font-weight-light my-0">£{{product.price * product.quantity}}</p>
+                  </v-col>
                 </v-row>
               </v-container>
             </v-card>
@@ -73,8 +76,13 @@
         outlined
         class="blue lighten-4 pb-4"
       >
-        <v-card-subtitle>Subtotal ({{getCartLength}} items): </v-card-subtitle>
-        <v-btn outlined text>Proceed to checkout</v-btn>
+        <v-card-subtitle>Subtotal ({{getCartLength}} items): £{{getCartTotalPrice}}</v-card-subtitle>
+        <v-btn 
+          outlined  
+          text
+          :nuxt="true"
+          to="/placeOrder"
+        >Proceed to checkout</v-btn>
 
       </v-card>
 
@@ -106,7 +114,6 @@ export default {
     ...mapGetters(["getCart", "getCartLength", "getCartTotalPrice"]),
     // ...mapMutations(["changeQty"]),
     // ...mapActions(["updateQty"])
-
   },
   methods: {
     onChangeQuantity(event, product){
