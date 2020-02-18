@@ -81,9 +81,7 @@
 
       <div class="v-toolbar-b2 d-flex align-center justify-space-between px-12">
 
-        <div class="logo ">
-          <p class="headline font-weight-light pa-0 ma-0 black--text">BOOKSTORE</p>
-        </div>
+        <p class="headline font-weight-light pa-0 ma-0 black--text">BOOKSTORE</p>
 
         <v-tabs 
           height="60px"
@@ -91,20 +89,23 @@
           centered
           slider-size=0
           color=black
+          :show-arrows=true
         >
           <v-tab
             :nuxt=true
             :to="`/`"
-          >Home</v-tab>
-          <v-tab>Books</v-tab>
-          <v-tab>New</v-tab>
-          <v-tab>Deals</v-tab>
+          >NEW</v-tab>
+          <v-tab>BEST SELLERS</v-tab>
+          <v-tab>FICTION</v-tab>
+          <v-tab>NON-FICTION</v-tab>
+          <v-tab>CHILDRENS</v-tab>
         </v-tabs>
 
         <Search class="search-style"/>
 
       </div>
     </div>
+
     <!-- <v-btn
       icon
       :nuxt="true"
@@ -214,12 +215,6 @@ export default {
 
 .extension-style{
   background-color:  red;
-}
-
-.logo-text-style{
-    color: black;
-    font-size: 4;
-    font-style: italic;
 }
 
 .search-style{

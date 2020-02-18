@@ -1,59 +1,101 @@
 <template>
   <v-row>
-    <v-col cols=6 class="red lighten-4 mx-auto">
-      <v-card 
-        flat
-        tile 
-        outlined
-        class = "pa-6"
-      >
-        <v-card-title>Sign Up</v-card-title>
-        <v-form
-          ref="form"
-          lazy-validation
-          class="ma-3"
+
+    <v-col>
+      <v-row justify="center">
+          <p class="display-2 font-weight-light ma-0 black--text py-4">BOOKSTORE</p>
+      </v-row>
+
+      <v-row justify="center">
+        <v-card 
+          flat
+          outlined
+          width="400px"
+          class = "pa-6"
         >
-          <!-- Name field -->
-          <v-text-field
-            v-model="name"
-            label="Your name"
-            required
-            :error-messages="nameErrors"
-            @input="$v.name.$touch()"
-            @blur="$v.name.$touch()"
-          ></v-text-field>
-
-          <!-- Email field -->
-          <v-text-field
-            v-model="email"
-            label="Email"
-            required
-            :error-messages="emailErrors"
-            @input="$v.email.$touch()"
-            @blur="$v.email.$touch()"
-          ></v-text-field>
-
-          <!-- Password field -->
-          <v-text-field
-            v-model="password"
-            label="Password"
-            required
-            :error-messages="passwordErrors"
-            @input="$v.password.$touch()"
-            @blur="$v.password.$touch()"
-          ></v-text-field>
-
-          <v-btn
-            color="warning"
-            @click="onSignup"
-            outlined
-            tile
-            class="mt-5"
+          <v-form
+            ref="form"
+            lazy-validation
+            class="ma-3"
           >
-            Add Category
-          </v-btn>
-        </v-form>
-      </v-card>
+            <p class="headline font-weight-medium black--text">Sign-Up</p>
+
+            <!-- Name field -->
+            <v-text-field
+              v-model="name"
+              label="Your name"
+              outlined
+              required
+              dense
+              light
+              filled
+              :error-messages="nameErrors"
+              @input="$v.name.$touch()"
+              @blur="$v.name.$touch()"
+            ></v-text-field>
+
+            <!-- Email field -->
+            <v-text-field
+              v-model="email"
+              label="Email"
+              outlined
+              required
+              dense
+              light
+              filled
+              :error-messages="emailErrors"
+              @input="$v.email.$touch()"
+              @blur="$v.email.$touch()"
+            ></v-text-field>
+
+            <!-- Password field -->
+            <v-text-field
+              v-model="password"
+              label="Password"
+              type="password"
+              outlined
+              required
+              dense
+              light
+              filled
+              :error-messages="passwordErrors"
+              @input="$v.password.$touch()"
+              @blur="$v.password.$touch()"
+            ></v-text-field>
+
+            <v-btn
+              @click="onSignup"
+              block
+              depressed   
+              outlined               
+              color="primary"
+            >
+              Sign up
+            </v-btn>
+          </v-form>
+        </v-card>
+      </v-row>
+
+      <v-row 
+        justify="center"
+      >
+        <p class="body-2 font-weight-medium grey--text text--darken-2 pt-4">Existing Customer?</p>
+      </v-row>
+      <v-row 
+        justify="center"
+      >
+        <v-btn 
+          depressed   
+          outlined               
+          color="warning"
+          :nuxt=true
+          :to="`/login/`"
+          width="400px"
+        >
+          Login to Your BOOKSTORE Account
+        </v-btn>
+      </v-row>
+
     </v-col>
   </v-row>
 </template>
