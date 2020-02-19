@@ -30,12 +30,12 @@
               :to="`/reviews/${product._id}`"
               outlined 
               text 
-              block class="ma-0 px-3 yellow lighten-2">Write a Review</v-btn>
+              block class="ma-0 px-3 orange lighten-1">Write a Review</v-btn>
         </v-card-actions>
       </div>
 
        <!-- This is the second column (with the customer reviews) -->
-       <div class = "blue lighten-3 mx-12">
+       <div class = "mx-12">
         <v-card 
           tile
           flat
@@ -62,11 +62,11 @@
             tile
             flat
             width="600px"
-            class="mt-6"
+            class="py-3"
           >
             <v-list-item class = "ma-0 pa-0">
               <v-list-item-avatar color="grey"></v-list-item-avatar>
-              <v-list-item-content>
+              <v-list-item-content >
                 <v-list-item-subtitle>{{ review.user.name }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>

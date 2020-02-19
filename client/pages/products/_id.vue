@@ -139,13 +139,8 @@ export default {
     ReviewSection
   },
   data: () => ({
-    title: null,
-    price: null,
-    description: null,
-    photo: null,
-    ownerName: null,
     product: null,
-    breadcrumbs: [{text: "New", href: "index"}, {text: "", disabled: true}],
+    breadcrumbs: [{text: "New", href: "/"}, {text: "", disabled: true}],
     reviews: []
   }),
   created(){

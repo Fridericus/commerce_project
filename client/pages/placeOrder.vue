@@ -1,13 +1,15 @@
 <template>
-<v-container>
+<v-container >
 
   <v-row>
     <v-col>
-      <p>{{$auth.$state.user.address.fullname}}</p>
+      <p>{{$auth.$state.user.address.name}}</p>
       <p>{{$auth.$state.user.address.streetAddress}}</p>
       <p>{{$auth.$state.user.address.city}}</p>
       <p>{{$auth.$state.user.address.country}}</p>
       <p>{{$auth.$state.user.address.phoneNumber}}</p>
+      <p>{{$auth.$state}}</p>
+
     </v-col>
   </v-row>
 
@@ -69,10 +71,12 @@ export default {
   }),
   computed: {
     ...mapGetters(["getCart", "getCartTotalPrice", "getCartTotalPriceWithShipping"])
+    
   },
   methods: {
     async onChooseShipping(shipment){
       console.log(shipment);
+
       try{
         let response = await this.$axios.$post("/api/shipment", {
           shipment: shipment

@@ -1,78 +1,110 @@
 <template>
-<div>
+<v-container>
   <v-row>
-    <v-col 
-      cols=6
-      class="blue lighten-4 mx-auto"
-    >
-      <v-card>
-        <v-card-title>Create Review</v-card-title>
-        <v-row>
-          <v-col cols=6>
+      <!-- Breadcrumbs -->
+      <v-col class="d-flex">
+          <v-breadcrumbs :items="breadcrumbs"></v-breadcrumbs>
+      </v-col>
+  </v-row>
+
+  <v-row>
+    <v-col>
+      <v-card
+        outlined
+        max-width="1000px"
+        class="mx-auto"
+      >
+        <v-row class="d-flex">
+          <v-col cols=3>
             <v-img
               v-if='photo'
               :src='photo'
-              height=150
-              width=100
-              class = "mx-auto"
+              class = "mx-6 my-3"
             ></v-img>
           </v-col>
-          <v-col cols=6>
-            <v-card-subtitle>{{ title }}</v-card-subtitle>
+
+          <v-col>
+            <v-form
+              ref="form"
+              v-model="valid"
+              :lazy-validation="lazy"
+              class = "px-6 "
+            >
+              <v-card-subtitle>{{ title }}</v-card-subtitle>
+              <v-card-title>Your Rating</v-card-title>
+
+              <v-rating
+                v-if='product'
+                v-model="rating"
+                color="amber"
+                dense
+                size="60"
+              ></v-rating>       
+
+              <v-card-title>Add a Headline</v-card-title>
+              <v-text-field
+                v-model="headline"
+                :counter="30"
+                :rules="headlineRules"
+                outlined
+                dense
+                light
+                filled
+                label="Whats most important to know?"
+                required
+              ></v-text-field>
+
+              <v-card-title>Add photo or video</v-card-title>
+              <!-- Picture field -->
+              <v-file-input 
+                @change="onSelectedFile" 
+                accept="image/*" 
+                outlined
+                dense
+                light
+                filled
+                label="Shoppers find images and videos more helpful than text alone."
+              >
+              </v-file-input>
+
+              <v-card-title>Write your review</v-card-title>
+              <v-textarea
+                v-model="body"
+                :counter="600"
+                :rules="reviewRules"
+                outlined
+                dense
+                light
+                filled
+                label="What do you like or dislike? What did you see this product for?"
+                required
+              ></v-textarea>
+
+              <v-btn 
+                @click="onAddReview"
+                outlined 
+                text 
+                block 
+                class="ma-0 orange lighten-1"
+              >Buy Now</v-btn>
+
+              <!-- <v-btn
+                color="warning"
+                @click="onAddReview"
+                outlined
+                tile
+                class="mt-5"
+              >
+                Submit
+              </v-btn> -->
+            </v-form>
           </v-col>
         </v-row>
-
-        <v-form
-          ref="form"
-          v-model="valid"
-          :lazy-validation="lazy"
-        >
-          <v-card-title>Overall Rating</v-card-title>
-          <no-ssr>
-            <star-rating v-model="rating"></star-rating>
-          </no-ssr>
-          <v-card-title>Add photo or video</v-card-title>
-          <!-- Picture field -->
-          <v-file-input 
-            @change="onSelectedFile" 
-            accept="image/*" 
-            label="Shoppers find images and videos more helpful than text alone."
-          >
-          </v-file-input>
-
-          <v-card-title>Add a Headline</v-card-title>
-          <v-text-field
-            v-model="headline"
-            :counter="10"
-            :rules="headlineRules"
-            label="Whats most important to know?"
-            required
-          ></v-text-field>
-
-          <v-card-title>Write your review</v-card-title>
-          <v-text-field
-            v-model="body"
-            :rules="reviewRules"
-            label="What do you like or dislike? What did you see this product for?"
-            required
-          ></v-text-field>
-
-          <v-btn
-            color="warning"
-            @click="onAddReview"
-            outlined
-            tile
-            class="mt-5"
-          >
-            Submit
-          </v-btn>
-
-        </v-form>
       </v-card>
     </v-col>
   </v-row>
   <!--/MAIN-->
-</div>
+</v-container>
 </template>
 
 <script>
@@ -100,13 +132,14 @@ export default {
     photo: null,
     ownerName: null,
     response: null,
+    product: null,
 
-    rating: 0,
+    rating: 5,
     headline: "",
     body: "",
     fileUpload: null,
     fileName: null,
-    breadcrumbs: [{text: "Category", href: "index"}, {text: "", disabled: true}],
+    breadcrumbs: [{text: "New", href: "/"}, {text: "",  href: "/"}, {text: "Write a Review", disabled: true}],
   }),
   created(){
     this.loadProduct(this);
@@ -120,12 +153,15 @@ export default {
         console.log("winning");
         console.log(response);
         self.response = response;
-        self.breadcrumbs[1].text = response.products.title;
         self.title = response.products.title;
         self.description = response.products.description;
         self.price = response.products.price;
         self.ownerName = response.products.owner.name;
         self.photo = response.products.photo;
+
+        self.product = response.products;
+        self.breadcrumbs[1].text = response.products.title;
+        self.breadcrumbs[1].href = `/products/${response.products._id}`;
 
         //this.posts = response.data
       })

@@ -164,13 +164,13 @@ export default {
   data: () => ({
     items: [
       {
-        src: 'https://cdn.waterstones.com/images/00142806-3600x1000.jpeg',
-      },
-      {
-        src: 'https://cdn.waterstones.com/images/00142199-3600x1000.jpeg',
-      },
-      {
         src: 'https://cdn.waterstones.com/images/00142203-3600x1000.jpeg',
+      },
+      // {
+      //   src: 'https://cdn.waterstones.com/images/00142199-3600x1000.jpeg',
+      // },
+      {
+        src: 'https://cdn.waterstones.com/images/00142806-3600x1000.jpeg',
       }
     ],
   })
@@ -178,10 +178,6 @@ export default {
 </script>
 
 <style scoped>
-.featured-style{
-  /* width: 500px;
-  height: 500px; */
-}
 
 .listing-style{
   text-align: left;
