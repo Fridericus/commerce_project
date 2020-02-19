@@ -1,22 +1,40 @@
 <template>
+<v-container>
+
   <v-row>
-    <v-col cols=6>
+
+    <!-- Profile column -->
+    <v-col>
       <v-card
-        flat
-        tile 
+        flat 
+        max-width="600"
+        min-width="300"
         outlined
-        class = "pa-6"
+        class = "px-10 py-6"
       >
-        <v-card-title>Profile Page</v-card-title>
-        <v-card-subtitle href="#" @click="onLogout">Logout</v-card-subtitle>
+        <v-row class="">
+          <v-col>
+            <p class="text--text title font-weight-medium mb-2">Your Profile</p>
+          </v-col>
+          <v-col>
+            <v-btn
+              outlined
+              color=red
+              small
+              @click="onLogout"
+              class="red--text float-right" 
+            >
+              Logout
+            </v-btn>
+          </v-col>
+        </v-row>
+
         <v-card 
-          outlined
-          tile
+          flat 
         >
           <v-form
             ref="form"
             lazy-validation
-            class="ma-3"
           >
 
             <!-- Name field -->
@@ -25,6 +43,9 @@
               :placeholder=$auth.$state.user.name
               label="Name"
               required
+              dense
+              filled
+              outlined
               :error-messages="nameErrors"
               @input="$v.name.$touch()"
               @blur="$v.name.$touch()"
@@ -35,6 +56,9 @@
               v-model="email"
               :placeholder=$auth.$state.user.email
               label="Email"
+              dense
+              filled
+              outlined
               required
               :error-messages="emailErrors"
               @input="$v.email.$touch()"
@@ -45,18 +69,34 @@
             <v-text-field
               v-model="password"
               label="Password"
+              dense
+              filled
+              outlined
               required
               :error-messages="passwordErrors"
               @input="$v.password.$touch()"
               @blur="$v.password.$touch()"
             ></v-text-field>
 
+            <!-- Password field -->
+            <v-text-field
+              v-model="rePassword"
+              label="Re enter password"
+              dense
+              filled
+              outlined
+              required
+              
+              :error-messages="rePasswordErrors"
+              @input="$v.rePassword.$touch()"
+              @blur="$v.rePassword.$touch()"
+            ></v-text-field>
+
             <v-btn
-              color="warning"
               @click="submit"
               outlined
-              tile
-              class="mt-5"
+              block
+              class="orange lighten-1 mb-2"
             >
               Update Profile
             </v-btn>
@@ -64,34 +104,62 @@
         </v-card>
       </v-card>
     </v-col>
+
+    <!-- Address column -->
+    <v-col>
+      <!-- <v-card
+        flat 
+        max-width="600"
+        min-width="300"
+        outlined
+        class = "px-10 py-6"
+      >
+        <v-row class="">
+          <v-col>
+            <p class="text--text title font-weight-medium mb-2">Your Addresses</p>
+          </v-col>
+          <v-col>
+            <v-btn
+              outlined
+              color=red
+              small
+              @click="onLogout"
+              class="red--text float-right" 
+            >
+              Logout
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-card> -->
+    <Address/>
+    </v-col>
+
   </v-row>
+</v-container>
 </template>
 
 <script>
+import Address from '~/pages/address/index'
 import { validationMixin } from 'vuelidate'
-import { maxLength, minLength, email} from 'vuelidate/lib/validators'
+import { maxLength, minLength, email, sameAs} from 'vuelidate/lib/validators'
 
 export default {
+  components: {
+    Address
+  },
   mixins: [validationMixin],
   validations: {
     name: {minLength: minLength(5), maxLength: maxLength(30)},
     email: {email},
-    password: { minLength: minLength(12), maxLength: maxLength(30)}
+    password: { minLength: minLength(12), maxLength: maxLength(30)},
+    rePassword: { sameAsPassword: sameAs('password')}
   },
-  // async asyncData({$axios}) {
-  //   try{
-  //     let responce = await $axios.$get('http://localhost:3000/api/categories');
-  //     return {
-  //       categories: responce.categories
-  //     };
-  //   }catch(err){
-  //     console.log(err);
-  //   }
-  // },
+
   data: () => ({
     name: "",
     email: "",
-    password: ""
+    password: "",
+    rePassword: ""
   }),
   computed: {
     nameErrors () {
@@ -112,6 +180,12 @@ export default {
       if (!this.$v.password.$dirty) return errors;
       !this.$v.password.maxLength && errors.push('Password must be at most 30 characters long.');
       !this.$v.password.minLength && errors.push('Password must be a minimum of 12 characters long.');    
+      return errors;
+    },
+    rePasswordErrors () {
+      const errors = []
+      if (!this.$v.rePassword.$dirty) return errors;
+      !this.$v.rePassword.sameAsPassword && errors.push('Passwords must match.');
       return errors;
     }
   },

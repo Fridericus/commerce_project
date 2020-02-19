@@ -124,8 +124,6 @@
 
 <script>
 import { mapGetters } from "vuex"
-// import {mapActions} from "vuex";
-// import {mapMutations} from "vuex";
 
 export default {
   data: () => ({

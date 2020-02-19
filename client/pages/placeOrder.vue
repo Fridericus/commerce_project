@@ -3,13 +3,14 @@
 
   <v-row>
     <v-col>
-      <p>{{$auth.$state.user.address.name}}</p>
-      <p>{{$auth.$state.user.address.streetAddress}}</p>
-      <p>{{$auth.$state.user.address.city}}</p>
-      <p>{{$auth.$state.user.address.country}}</p>
-      <p>{{$auth.$state.user.address.phoneNumber}}</p>
-      <p>{{$auth.$state}}</p>
-
+      <div v-if="$auth.$state.user.address">
+        <p>Add found</p>
+        <p>{{$auth.$state.user}}</p>
+      </div>
+      <div v-else>
+        <p>Add not found</p>
+        <p>{{$auth.$state}}</p>
+      </div>
     </v-col>
   </v-row>
 

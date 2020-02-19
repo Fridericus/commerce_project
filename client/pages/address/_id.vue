@@ -1,7 +1,20 @@
 <template>
+<v-container>
+<v-row>
+    <!-- Breadcrumbs -->
+    <v-col class="d-flex">
+        <v-breadcrumbs :items="breadcrumbs"></v-breadcrumbs>
+    </v-col>
+</v-row>
 <v-row>
   <v-col>
-    <v-card>
+    <v-card
+      flat 
+      max-width="800"
+      min-width="400"
+      outlined
+      class = "px-10 py-6 mx-auto"
+    >
       <v-card-title>Edit an address</v-card-title>
         <v-form
           v-if=address
@@ -15,6 +28,9 @@
             :items="countries"
             item-text="name"
             item-value="alpha2Code"
+            outlined
+            dense
+            light
             filled
             label="Country"
             required
@@ -26,6 +42,10 @@
             v-model=address.fullName
             label="Full Name"
             required
+            outlined
+            dense
+            light
+            filled
           ></v-text-field>
 
           <!-- Street Address 1 field -->
@@ -33,6 +53,10 @@
             v-model=address.streetAddress
             label="Street and number, P.O box, c/o."
             required
+            outlined
+            dense
+            light
+            filled
           ></v-text-field>
 
           <!-- Street Address 2 field
@@ -47,6 +71,10 @@
             v-model=address.city
             label="City"
             required
+            outlined
+            dense
+            light
+            filled
           ></v-text-field>
 
           <!-- County field -->
@@ -54,6 +82,10 @@
             v-model=address.county
             label="County"
             required
+            outlined
+            dense
+            light
+            filled
           ></v-text-field>
 
           <!-- Post Code field -->
@@ -61,6 +93,10 @@
             v-model=address.postCode
             label="Post Code"
             required
+            outlined
+            dense
+            light
+            filled
           ></v-text-field>
 
 
@@ -69,6 +105,10 @@
             v-model=address.phoneNumber
             label="Phone Number"
             required
+            outlined
+            dense
+            light
+            filled
           ></v-text-field>
 
 
@@ -77,21 +117,29 @@
             v-model=address.deliveryInstructions
             label="Provide details such as building description, a nearby landmark, or other naigation instructions."
             required
+            outlined
+            dense
+            light
+            filled
           ></v-text-field>
 
           <!-- Security code Instructions -->
           <v-text-field
             v-model=address.securityCode
-            label=""
+            label="Security code if required"
             required
+            outlined
+            dense
+            light
+            filled
           ></v-text-field>
 
           <v-btn
-            color="warning"
             @click="onUpdateAddress"
             outlined
-            tile
-            class="mt-5"
+            text
+            block
+            class="mt-5 orange lighten-1"
           >
            Update Address
           </v-btn>
@@ -99,12 +147,14 @@
     </v-card>
   </v-col>
 </v-row>
+</v-container>
 </template>
 
 <script>
 export default {
   data() {
     return {
+      breadcrumbs: [{text: "Profile", href: '/profile'}, {text: "Edit Address", disabled: true}],
       country: "",
       fullName: "",
       streetAddress1: "",
