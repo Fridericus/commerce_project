@@ -123,18 +123,18 @@ export default {
     async onLogin() {
       try{
 
-      this.$auth.loginWith("local", {
-        data: {
-          email: this.email,
-          password: this.password
-        }
-      });
+        this.$auth.loginWith("local", {
+          data: {
+            email: this.email,
+            password: this.password
+          }
+        });
+        
+        this.$router.push("/");
 
-          this.$router.push("/");
       }catch(err){
         console.log(err);
       }
-
     }
   },
 }

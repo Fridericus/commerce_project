@@ -108,6 +108,12 @@ export default {
           logout: true
         }
       }
-    }
+    },
+    // redirect: {
+    //   login: '/login',
+    //   logout: '/',
+    //   home: '/',
+    //   // callback: '/login'
+    // }
   }
 }

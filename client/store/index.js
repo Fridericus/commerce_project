@@ -76,6 +76,12 @@ export const mutations = {
 };
 
 export const getters = {
+  isAuthenticated(state) {
+    return state.auth.loggedIn;
+  },
+  loggedInUser(state) {
+    return state.auth.user;
+  },
   getCartLength(state) {
     return state.cartLength;
   },
@@ -100,3 +106,4 @@ export const getters = {
     return state.shippingEstimatedDelivery;
   }
 };
+ 

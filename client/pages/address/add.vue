@@ -201,23 +201,26 @@ export default {
       })
     },
     async onAddAddress(){
-      try{
-        let data = {
-          country: this.country,
-          fullName: this.fullName,
-          streetAddress: this.streetAddress1 + " " + this.streetAddress2,
-          city: this.city,
-          county: this.county,
-          postCode: this.postCode,
-          phoneNumber: this.phoneNumber,
-          deliveryInstructions: this.deliveryInstructions,
-          securityCode: this.securityCode
-        };
 
-        let responce = await this.$axios.$post("/api/address", data);
-        if (responce.success){
-          this.$router.push("/");
-        }
+      try{
+        setTimeout(async () => {
+          let data = {
+            country: this.country,
+            fullName: this.fullName,
+            streetAddress: this.streetAddress1 + " " + this.streetAddress2,
+            city: this.city,
+            county: this.county,
+            postCode: this.postCode,
+            phoneNumber: this.phoneNumber,
+            deliveryInstructions: this.deliveryInstructions,
+            securityCode: this.securityCode
+          };
+          let responce = await this.$axios.$post("/api/address", data);
+          if (responce.success){
+            this.$router.push("/");
+          }
+        }, 0);
+
       }catch(err){
         console.log("/");
       }

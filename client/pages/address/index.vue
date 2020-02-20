@@ -105,11 +105,15 @@ export default {
   methods: {
     async onDeleteAddress(id, index){
       try{
-        let responce = await this.$axios.$delete(`/api/addresses/${id}`);
-        if(responce.success){
-          this.message = responce.message;
-          this.addresses.splice(index, 1);
-        }
+
+        setTimeout(async () => {
+          let responce = await this.$axios.$delete(`/api/addresses/${id}`);
+          if(responce.success){
+            this.message = responce.message;
+            this.addresses.splice(index, 1);
+          }
+        }, 0);
+
       }catch(err){
         this.message = err.message;
         console.log("onDeleteAddress catch: " + err);
@@ -117,11 +121,15 @@ export default {
     },
     async onSetDefault(id){
       try{
-        let responce = await this.$axios.$put('/api/address/set/default', {id: id});
-        if(responce.success){
-          this.message = responce.message;
-          await this.$auth.fetchUser();
-        }
+
+        setTimeout(async () => {
+          let responce = await this.$axios.$put('/api/address/set/default', {id: id});
+          if(responce.success){
+            this.message = responce.message;
+            await this.$auth.fetchUser();
+          }
+        }, 0);
+
       }catch(err){
         this.message = err.message;
         console.log(err);

@@ -1,5 +1,4 @@
 <template>
-<div>
   <v-app-bar
     app
     dark
@@ -7,9 +6,7 @@
     height="100"
   >
     <div class="d-flex flex-column v-toolbar-container">
-
       <div class="v-toolbar-b1 d-flex align-center justify-space-between px-4">
-
         <div class="d-flex align-center">
           <v-btn 
             icon 
@@ -23,7 +20,7 @@
 
         <div class="d-flex align-center">
 
-          <template v-if="$auth.$state.loggedIn">
+          <template v-if="$auth.$state.user">
             <nuxt-link
               to="/profile"
               class="white--text px-3 link-style"
@@ -34,7 +31,7 @@
           </template>
           <template v-else>
             <nuxt-link
-              to="/logIn"
+              to="/login"
               class="white--text px-3 link-style"
               style="text-decoration:none;"
             >
@@ -43,7 +40,8 @@
             </nuxt-link>
           </template>
 
-          <v-btn 
+          <v-btn
+            v-if="isAuthenticated"
             small  
             icon 
             :nuxt=true
@@ -52,6 +50,17 @@
           >            
             <v-icon>person</v-icon>
           </v-btn>
+          <v-btn
+            v-else
+            small  
+            icon 
+            :nuxt=true
+            :to="`/profile/`"
+            class="px-5"
+          >            
+            <v-icon>person</v-icon>
+          </v-btn>
+
           <v-btn 
             icon
             small
@@ -105,72 +114,7 @@
 
       </div>
     </div>
-
-    <!-- <v-btn
-      icon
-      :nuxt="true"
-      :to="`/`"
-    >
-          <v-icon>mdi-home</v-icon>
-    </v-btn>
-    <v-toolbar-title 
-      class="pr-10" 
-      v-text="title" 
-    />
-    <Search/>
-    <v-spacer/>
-
-    <template v-if="$auth.$state.loggedIn">
-      <nuxt-link
-        to="/profile"
-        class="white--text"
-      >
-        <span class="">Hello,</span>
-        <span class="">{{ $auth.$state.user.name }}</span>
-
-      </nuxt-link>
-    </template>
-    <template v-else>
-      <nuxt-link
-        to="/logIn"
-        class="white--text"
-      >
-        <span class="">Hello,</span>
-        <span class="">Sign In</span>
-
-      </nuxt-link>
-    </template>
-    <v-btn icon>
-      <v-icon>location_on</v-icon>
-    </v-btn>
-    <v-btn icon>
-    <v-icon>language</v-icon>
-    </v-btn>
-    <v-btn 
-      icon
-      :nuxt="true"
-      :to="`/cart/`"
-    >
-    <v-icon>shopping_cart</v-icon>
-    </v-btn>
-    <span>{{getCartLength}}</span>
-
-    <template 
-      v-slot:extension
-      class="extension-style light-red"
-    >
-      <v-tabs align-with-title>
-        <v-tab>Browsing History</v-tab>
-        <v-tab>Todays Deals</v-tab>
-        <v-tab>Your Store</v-tab>
-        <v-tab>Gift Cards</v-tab>
-        <v-tab>Registry</v-tab>
-        <v-tab>Sell</v-tab>
-      </v-tabs>
-    </template> -->
-
   </v-app-bar>
-</div>
 </template>
 
 <script>
@@ -185,7 +129,7 @@ export default {
     drawer: null
   }),
   computed: {
-    ...mapGetters(["getCartLength"])
+    ...mapGetters(["getCartLength", "isAuthenticated", "loggedInUser"]),
   }
 }
 </script>

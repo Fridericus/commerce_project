@@ -147,13 +147,17 @@ export default {
   components: {
     Address
   },
+  
+  middleware: "auth",
+  auth: "login",
+
   mixins: [validationMixin],
   validations: {
     name: {minLength: minLength(5), maxLength: maxLength(30)},
     email: {email},
     password: { minLength: minLength(12), maxLength: maxLength(30)},
     rePassword: { sameAsPassword: sameAs('password')}
-  },
+  }, 
 
   data: () => ({
     name: "",
@@ -214,7 +218,11 @@ export default {
       }
     },
     async onLogout() {
-      await this.$auth.logout();
+      try{
+        await this.$auth.logout();
+      }catch(err){
+        console.log(err);
+      }
     }
   }
 }
