@@ -1,33 +1,4 @@
 <template>
-  <!-- <v-row>
-    <v-col class="d-flex">
-      
-      <v-card href="/address/add" nuxt=true class="ma-2">
-        <v-card-title>Add an address</v-card-title>
-        <p>{{message}}</p>
-
-      </v-card>
-      
-      <div v-if='addresses'>
-        <v-card
-          v-for="(address, index) in addresses"
-          :key=index
-          class="ma-2"
-        >
-          <v-card-text>{{address.fullName}}</v-card-text>
-          <v-card-text>{{address.streetAddress}}</v-card-text>
-          <v-card-text>{{address.city}}</v-card-text>
-          <v-card-text>{{address.county}}</v-card-text>
-          <v-card-text>{{address.postCode}}</v-card-text>
-          <v-card-text>{{address.country}}</v-card-text>
-          <v-card-text>{{address.phoneNumber}}</v-card-text>
-          <v-btn :to="`/address/${address._id}`" >Edit</v-btn>
-          <v-btn @click="onDeleteAddress(address._id, index)">Delete</v-btn>
-          <v-btn @click="onSetDefault(address._id, index)">Set as Default</v-btn>
-        </v-card>
-      </div>
-    </v-col>
-  </v-row> -->
 
   <v-card
     flat 
